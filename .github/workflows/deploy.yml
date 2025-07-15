@@ -1,12 +1,16 @@
 name: Reusable Deploy
 
 on:
-  workflow_call:   # wichtig: macht den Workflow wiederverwendbar
+  workflow_call:   #macht den Workflow wiederverwendbar
     inputs:
       deploy_path:
         description: 'Pfad auf dem Server'
         required: true
         type: string
+      secrets:
+        SSH_GHA:
+          description: 'Private SSH key'
+          required: true
 
 jobs:
   deploy:
