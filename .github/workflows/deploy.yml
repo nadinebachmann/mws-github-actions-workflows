@@ -1,0 +1,25 @@
+name: Reusable Deploy
+
+on:
+  workflow_call:   # wichtig: macht den Workflow wiederverwendbar
+    inputs:
+      deploy_path:
+        description: 'Pfad auf dem Server'
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Connect to Testserver
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: afg-test.vk-dev.de
+          username: root
+          key: ${{ secrets.SSH_GHA }}
+          script: |
+            echo "Deploy path: ${{ inputs.deploy_path }}"
+            cd ${{ inputs.deploy_path }}
+            git pull
