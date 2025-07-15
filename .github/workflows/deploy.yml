@@ -7,10 +7,10 @@ on:
         description: 'Pfad auf dem Server'
         required: true
         type: string
-      secrets:
-        SSH_GHA:
-          description: 'Private SSH key'
-          required: true
+    secrets:
+      SSH_GHA:
+        description: 'Private SSH key'
+        required: true
 
 jobs:
   deploy:
